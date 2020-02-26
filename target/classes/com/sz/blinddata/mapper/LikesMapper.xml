@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.blinddata.mapper.LikesMapper">
+    <resultMap id="likesMap" type="Likes" autoMapping="true">
+        <association property="person" column="account" javaType="Person" autoMapping="true"></association>
+        <association property="hobby" column="hid" javaType="Hobby" autoMapping="true"></association>
+    </resultMap>
+    <insert id="addLikes">
+        insert into likes (lid,hid,account) values(#{lid},#{hobby.hid},#{person.account})
+    </insert>
+    <delete id="deleteByAccountAndHid">
+        delete from likes where account =#{person.account} and hid= #{hobby.hid}
+    </delete>
+    <delete id="deleteByAccount">
+        delete from likes where account = #{person.account}
+    </delete>
+    <select id="findAll" resultMap="likesMap">
+        select pname,picon,pnickname,page,psex,hname from likes l
+        left outer join person p on l.account = p.account
+        left outer join hobby h on h.hid = l.hid
+    </select>
+    <select id="findByAccount" resultMap="likesMap">
+        select pname,picon,pnickname,page,psex,hname from likes l
+        left outer join person p on l.account = p.account
+        left outer join hobby h on h.hid = l.hid
+        where p.account = #{person.account}
+    </select>
+
+</mapper>

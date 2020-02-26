@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.blinddata.mapper.PctMapper">
+    <insert id="addPct">
+        insert into pct(account,ptime) values(#{account},#{ptime})
+    </insert>
+    <insert id="addPctList">
+        insert into pct(account,ptime)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.account},#{item.ptime})
+        </foreach>
+    </insert>
+    <select id="getSome" parameterType="Pct">
+        select * from pct
+    </select>
+</mapper>

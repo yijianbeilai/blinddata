@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+       姓名：<input type="text" class="pname"  placeholder="name"> <br>
+       id：<input type="text" class="pid"  placeholder="id"> <br>
+       性别：<input type="text" class="psex"  placeholder="sex"> <br>
+       年龄：<input type="text" class="page"  placeholder="age"> <br>
+       昵称：<input type="text" class="pnickname"  placeholder="nickname"> <br>
+       账号：<input type="text" class="account"  placeholder="account"> <br>
+       密码：<input type="password" class="password"  placeholder="password"> <br>
+       确认密码：<input type="password" class="password2"  placeholder="password"> <br>
+       <input type="button" value="signup" class="bt1"><br>
+       <a href="login.html">login</a>
+
+</body>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script>
+    $(function(){
+        $(".bt1").click(function () {
+               $.post("/person/signup",{pname:$(".pname").val(),pid:$(".pid").val(),psex:$(".psex").val(),page:$(".page").val(),
+                      pnickname:$(".pnickname").val(),password:$(".password").val(),account:$(".account").val()
+               },function (data) {
+                      if(data)
+                             alert("注册成功");
+                      else
+                             alert("注册失败");
+               },"json");
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.blinddata.mapper.HobbyMapper">
+    <insert id="addHobby">
+        insert into hobby(hid,phid,hname) values(#{hid},#{phid},#{hname})
+    </insert>
+    <insert id="addHobbyList">
+        insert into hobby(hid,phid,hname)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.hid},#{item.phid},#{item.hname})
+        </foreach>
+    </insert>
+    <update id="updateHobbyHname">
+        update hobby set hname = #{hname} where hid = #{hid}
+    </update>
+    <select id="selectByHid" resultType="Hobby">
+        select * from hobby where hid= #{hid}
+    </select>
+    <select id="findAll" resultType="Hobby">
+        select * from hobby
+    </select>
+    <delete id="deleteByHid">
+        delete from hobby where hid = #{hid}
+    </delete>
+</mapper>

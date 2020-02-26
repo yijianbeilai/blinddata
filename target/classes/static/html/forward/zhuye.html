@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>welcom <scan class="sc1"></scan></p>
+</body>
+<script src="../../js/jquery-3.0.0.min.js"></script>
+<script>
+    $(function(){
+        $.get("/person/getPnicknameBySession",function (data) {
+            $(".sc1").text(data.pnickname);
+        },"json")
+    })
+</script>
+</html>
