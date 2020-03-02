@@ -7,4 +7,6 @@ import java.util.List;
 public interface ProvinceService {
     List<Province> getPidName();
     List<Province> getProvinceListById(Province province);
+    List<Province> getFirstProvince();
+    List<Province> getSecondAndThirdProvince(Province province);
 }
