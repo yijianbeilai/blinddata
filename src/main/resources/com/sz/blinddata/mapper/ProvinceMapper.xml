@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.blinddata.mapper.ProvinceMapper">
+    <resultMap id="provinceMap1" type="Province">
+        <id column="p1id" property="id"></id>
+        <result column="pname" property="name"></result>
+    </resultMap>
+    <select id="getPidName" resultMap="provinceMap1">
+        select distinct p1.name as pname,p1.id as p1id from province p1
+        left outer join province p2 on p1.id = p2.pid
+        where p2.pid is not null
+    </select>
+    <select id="getProvinceListById" resultType="Province">
+        select * from province where pid = #{id}
+    </select>
+</mapper>
