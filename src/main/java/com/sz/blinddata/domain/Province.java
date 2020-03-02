@@ -1,6 +1,8 @@
 package com.sz.blinddata.domain;
 
-public class Province {
+
+
+public class Province{
     private Integer id;
     private Integer pid;
     private String name;
